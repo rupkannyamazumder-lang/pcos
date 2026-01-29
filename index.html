@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Medora | PCOS Companion</title>
+    <style>
+        :root {
+            --blood-red: #8a0303;
+            --soft-pink: #fff0f0;
+            --gold: #d4af37;
+        }
+        body { 
+            font-family: 'Playfair Display', serif; 
+            margin: 0; background: var(--soft-pink); color: var(--blood-red); 
+        }
+        
+        /* Navigation Bar */
+        nav { 
+            background: var(--blood-red); padding: 15px; 
+            position: sticky; top: 0; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;
+            z-index: 1000;
+        }
+        nav a { color: white; text-decoration: none; font-weight: bold; font-size: 14px; cursor: pointer; }
+        nav a:hover { color: var(--gold); }
+
+        .page { display: none; padding: 40px; max-width: 900px; margin: auto; animation: fadeIn 0.5s; }
+        .active { display: block; }
+
+        /* Page 1: Circular Stylish Text */
+        .circle-text {
+            width: 400px; height: 400px; border: 5px solid var(--blood-red);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 30px; margin: auto;
+            font-style: italic; font-weight: bold; line-height: 1.6;
+            background: white; box-shadow: 0 0 20px rgba(138, 3, 3, 0.2);
+        }
+
+        /* Page 3: Ovary Design */
+        .ovary-container {
+            width: 200px; height: 100px; background: var(--blood-red);
+            margin: 20px auto; border-radius: 50% 50% 40% 40%;
+            position: relative; border: 4px solid var(--gold);
+        }
+
+        /* Buttons & Inputs */
+        input, select { padding: 10px; border: 2px solid var(--blood-red); border-radius: 5px; margin: 10px; }
+        button { 
+            background: var(--blood-red); color: white; border: none; 
+            padding: 12px 25px; border-radius: 20px; cursor: pointer; font-weight: bold;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a onclick="showPage('p1')">Home</a>
+    <a onclick="showPage('p2')">Profile</a>
+    <a onclick="showPage('p3')">Tracker</a>
+    <a onclick="showPage('p4')">Hydration</a>
+    <a onclick="showPage('p5')">Detection</a>
+    <a onclick="showPage('p6')">Plans</a>
+    <a onclick="showPage('p7')">Reminders</a>
+    <a onclick="showPage('p8')">AI Consult</a>
+</nav>
+
+<div id="p1" class="page active">
+    <h1>About PCOS</h1>
+    <div class="circle-text">
+        <p><i><b>PCOS</b> is a hormonal imbalance affecting 1 in 10 women. 
+        It involves irregular cycles, high androgens, and small cysts on the ovaries. 
+        Through <b>Medora</b>, we transform management into a stylish lifestyle journey.</i></p>
+    </div>
+</div>
+
+<div id="p2" class="page">
+    <h2 style="text-decoration: underline;">Your Profile</h2>
+    <div style="border: 2px dashed var(--blood-red); padding: 20px;">
+        <input type="text" id="name" placeholder="Name">
+        <input type="number" id="height" placeholder="Height (cm)">
+        <input type="number" id="weight" placeholder="Weight (kg)">
+        <button onclick="calcBMI()">Analyze Me</button>
+        <h3 id="bmiResult"></h3>
+    </div>
+</div>
+
+<div id="p3" class="page">
+    <h2>Cycle Prediction</h2>
+    <div class="ovary-container"></div>
+    <label>Start Date:</label>
+    <input type="date" id="startDate">
+    <button onclick="predictPeriod()">Predict Next Cycle</button>
+    <h3 id="prediction"></h3>
+</div>
+
+<div id="p5" class="page">
+    <h2>PCOS Risk Detection</h2>
+    <p>Select your symptoms:</p>
+    <input type="checkbox" class="symp" value="Acne"> Acne 
+    <input type="checkbox" class="symp" value="Hairfall"> Hairfall 
+    <input type="checkbox" class="symp" value="Weight"> Weight Gain
+    <input type="checkbox" class="symp" value="Periods"> Absent Periods
+    <input type="checkbox" class="symp" value="Bleeding"> Heavy Bleeding
+    <br><button onclick="checkPCOS()">Analyze Risk</button>
+    <h2 id="riskScore"></h2>
+</div>
+
+<div id="p8" class="page">
+    <h2>Medora AI Consultant</h2>
+    <div id="chatBox" style="height: 200px; overflow-y: scroll; background: white; border: 1px solid var(--blood-red); padding: 10px; margin-bottom: 10px;">
+        <p><b>Medora AI:</b> How can I support your health journey today?</p>
+    </div>
+    <input type="text" id="userMsg" style="width: 70%;" placeholder="Ask about PCOS...">
+    <button onclick="askAI()">Ask</button>
+    <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+        <i>Note: Medora is always here to support you. We believe in your strength and your body's wisdom. 
+        You are never alone in this journey; our platform is designed to guide you every step of the way with love and care.</i>
+    </p>
+</div>
+
+<script>
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    function calcBMI() {
+        const w = document.getElementById('weight').value;
+        const h = document.getElementById('height').value / 100;
+        const bmi = (w / (h * h)).toFixed(1);
+        document.getElementById('bmiResult').innerText = `Your BMI is: ${bmi}`;
+    }
+
+    function predictPeriod() {
+        const start = new Date(document.getElementById('startDate').value);
+        start.setDate(start.getDate() + 28);
+        document.getElementById('prediction').innerText = "Next expected date: " + start.toDateString();
+    }
+
+    function checkPCOS() {
+        const checked = document.querySelectorAll('.symp:checked').length;
+        let msg = checked >= 5 ? "High Risk - Consult Doctor" : "Lower Chance of PCOS";
+        document.getElementById('riskScore').innerText = msg;
+    }
+
+    const faq = {
+        "what is pcos": "PCOS is a hormonal condition where ovaries produce excess male hormones.",
+        "cure": "There is no permanent cure, but it can be managed with lifestyle changes.",
+        "weight": "PCOS causes insulin resistance, making weight gain easier."
+    };
+
+    function askAI() {
+        const q = document.getElementById('userMsg').value.toLowerCase();
+        let reply = "I'm not sure about that, but I'm learning! Please consult a doctor.";
+        for (let key in faq) {
+            if (q.includes(key)) reply = faq[key];
+        }
+        document.getElementById('chatBox').innerHTML += `<p><b>You:</b> ${q}</p><p><b>AI:</b> ${reply}</p>`;
+    }
+</script>
+
+</body>
+</html>
