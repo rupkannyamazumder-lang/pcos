@@ -2,230 +2,377 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Medora | PCOS & Mind Sanctuary</title>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&family=Lora:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medora | Your PCOS Sanctuary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --warm-yellow: #FFD93D;
             --soft-orange: #FF8400;
             --cream: #FFFBF1;
-            --text-gray: #4F4A45;
+            --peach: #FFD1BB;
+            --text-dark: #4F4A45;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.8);
         }
+
+        * { box-sizing: border-box; transition: all 0.3s ease; }
 
         body {
-            margin: 0; font-family: 'Quicksand', sans-serif;
+            margin: 0; font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, var(--cream) 0%, #FFF3E0 100%);
-            color: var(--text-gray); display: flex; height: 100vh; overflow: hidden;
+            color: var(--text-dark); overflow-x: hidden;
         }
 
-        /* Sidebar Navigation */
+        /* --- Navigation --- */
         nav {
-            width: 260px; background: white; padding: 30px 15px;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.05); overflow-y: auto;
+            background: var(--white); padding: 1rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 132, 0, 0.1);
         }
 
-        nav h1 { font-family: 'Lora', serif; color: var(--soft-orange); text-align: center; margin-bottom: 40px; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--soft-orange); }
+
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; }
         
-        .nav-item {
-            padding: 12px 20px; margin: 8px 0; border-radius: 12px;
-            cursor: pointer; transition: 0.3s; font-weight: 500;
-            display: flex; align-items: center; gap: 10px;
+        .nav-links a {
+            text-decoration: none; color: var(--text-dark); font-weight: 600; font-size: 0.9rem;
+            padding: 8px 12px; border-radius: 20px; cursor: pointer;
         }
 
-        .nav-item:hover { background: var(--warm-yellow); color: white; }
-        .nav-item.active { background: var(--soft-orange); color: white; }
+        .nav-links a:hover, .nav-links a.active { background: var(--warm-yellow); color: var(--white); }
 
-        /* Main Content Area */
-        main { flex: 1; overflow-y: auto; padding: 40px; }
-        .page { display: none; animation: fadeIn 0.5s ease; }
+        /* --- Global Layouts --- */
+        .page { display: none; padding: 40px 5%; animation: fadeIn 0.8s ease forwards; }
         .page.active { display: block; }
 
-        /* Dashboard Styles */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card {
-            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 24px; padding: 25px; box-shadow: 0 8px 32px rgba(255, 132, 0, 0.1);
-        }
+        .container { max-width: 1100px; margin: auto; }
+        .card { background: var(--white); border-radius: 30px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--peach); }
+        
+        h1, h2 { font-family: 'Playfair Display', serif; color: var(--soft-orange); }
 
-        /* Elements */
-        .btn {
-            background: var(--soft-orange); color: white; border: none;
-            padding: 12px 24px; border-radius: 50px; cursor: pointer;
-            font-weight: 700; width: 100%; margin-top: 10px;
-        }
+        /* --- Page 1: Magazine Awareness --- */
+        .hero-section { text-align: center; padding: 60px 0; background: var(--white); border-radius: 50px; margin-bottom: 40px; }
+        .magazine-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
+        .myth-box { background: var(--warm-yellow); padding: 20px; border-radius: 20px; color: #6e5a00; }
 
-        .symptom-btn {
-            background: white; border: 2px solid var(--warm-yellow);
-            padding: 10px; border-radius: 15px; cursor: pointer; margin: 5px;
-            font-size: 0.9rem; transition: 0.2s;
-        }
-        .symptom-btn.selected { background: var(--warm-yellow); color: white; }
+        /* --- Page 2: Profile --- */
+        .input-group { margin-bottom: 20px; }
+        input { width: 100%; padding: 15px; border: 2px solid var(--peach); border-radius: 15px; font-family: inherit; }
+        button { background: var(--soft-orange); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; }
+        button:hover { transform: scale(1.02); box-shadow: 0 5px 15px rgba(255, 132, 0, 0.3); }
 
-        .crisis-btn { background: #FF4B4B; color: white; margin-top: 30px; }
+        /* --- Page 3: Tracker --- */
+        .calendar-box { text-align: center; padding: 40px; background: linear-gradient(to bottom, #fff, var(--cream)); }
+        .countdown-circle { width: 150px; height: 150px; border: 10px solid var(--warm-yellow); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 20px auto; font-size: 2rem; font-weight: bold; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* --- Page 4: Risk Analysis --- */
+        .symptom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px; }
+        .symptom-item { border: 2px solid var(--peach); padding: 15px; border-radius: 20px; text-align: center; cursor: pointer; }
+        .symptom-item.selected { background: var(--warm-yellow); border-color: var(--soft-orange); }
+
+        /* --- Page 5: Wellness Cards --- */
+        .wellness-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .w-card { background: var(--white); border-left: 8px solid var(--soft-orange); padding: 20px; border-radius: 15px; }
+
+        /* --- Page 7: AI Chat --- */
+        #chat-area { height: 400px; overflow-y: auto; border: 2px solid var(--peach); border-radius: 20px; padding: 20px; margin-bottom: 20px; background: #fff; }
+        .msg { margin-bottom: 15px; padding: 10px 15px; border-radius: 15px; max-width: 80%; }
+        .bot { background: var(--cream); align-self: flex-start; }
+        .user { background: var(--peach); margin-left: auto; text-align: right; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<nav id="sidebar">
-    <h1>Medora</h1>
-    <div class="nav-item active" onclick="show('dash')">🏠 Dashboard</div>
-    <div class="nav-item" onclick="show('cycle')">🩸 Cycle Tracking</div>
-    <div class="nav-item" onclick="show('mind')">🧠 Mental Health</div>
-    <div class="nav-item" onclick="show('diet')">🍎 Diet & Movement</div>
-    <div class="nav-item" onclick="show('learn')">📖 Learn PCOS</div>
-    <div class="nav-item" onclick="show('ai')">💬 AI Consultant</div>
-    <div class="nav-item" onclick="show('settings')">🔐 Privacy</div>
-    
-    <button class="btn crisis-btn" onclick="triggerCrisis()">Emergency Calm</button>
+<nav>
+    <div class="logo">Medora</div>
+    <div class="nav-links">
+        <a onclick="showPage('awareness')" class="active">Awareness</a>
+        <a onclick="showPage('profile')">Profile</a>
+        <a onclick="showPage('tracker')">Tracker</a>
+        <a onclick="showPage('analyze')">Analyze</a>
+        <a onclick="showPage('wellness')">Wellness</a>
+        <a onclick="showPage('reminders')">Rituals</a>
+        <a onclick="showPage('ai')">AI Consult</a>
+    </div>
 </nav>
 
-<main>
-    <div id="dash" class="page active">
-        <h2 style="font-family: 'Lora';">Hello, Beautiful.</h2>
-        <p><i>"Be kind to yourself today. Your body is doing its best."</i></p>
-        
-        <div class="grid">
-            <div class="card">
-                <h3>Next Period</h3>
-                <div style="font-size: 2rem; color: var(--soft-orange);">12 Days</div>
-                <p>Cycle Phase: Follicular</p>
-            </div>
-            <div class="card">
-                <h3>Daily Hydration</h3>
-                <p>Goal: 8 Glasses</p>
-                <div id="waterCount" style="font-size: 1.5rem;">💧 💧 💧 ⚪ ⚪ ⚪ ⚪ ⚪</div>
-                <button onclick="addWater()" style="margin-top:10px;">Drink Glass</button>
-            </div>
+<div class="container">
+    
+    <section id="awareness" class="page active">
+        <div class="hero-section">
+            <h1>The Modern Woman's Guide to PCOS</h1>
+            <p><i>Empowerment through knowledge. Grace through management.</i></p>
         </div>
-    </div>
-
-    <div id="cycle" class="page">
-        <h2>Cycle Calendar & Insights</h2>
-        <div class="grid">
+        <div class="magazine-grid">
             <div class="card">
-                <input type="date" id="lastPeriod">
-                <button class="btn" onclick="calcCycle()">Log Period</button>
-            </div>
-            <div class="card">
-                <h3>PCOS Symptom Tracker</h3>
-                <button class="symptom-btn" onclick="toggleS(this)">Acne</button>
-                <button class="symptom-btn" onclick="toggleS(this)">Bloating</button>
-                <button class="symptom-btn" onclick="toggleS(this)">Hair Fall</button>
-                <button class="symptom-btn" onclick="toggleS(this)">Cramps</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="mind" class="page">
-        <h2>Mind Sanctuary</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Mood Check-in</h3>
-                <div style="font-size: 2rem; display: flex; gap: 15px;">
-                    <span onclick="logMood('Happy')" style="cursor:pointer">😊</span>
-                    <span onclick="logMood('Anxious')" style="cursor:pointer">😟</span>
-                    <span onclick="logMood('Tired')" style="cursor:pointer">😴</span>
-                    <span onclick="logMood('Irritated')" style="cursor:pointer">😤</span>
+                <h2>What is PCOS?</h2>
+                <p>Polycystic Ovary Syndrome (PCOS) is a hormonal harmony disruption. It’s not just a physical condition; it’s a lifestyle journey. It affects how your ovaries function, often leading to irregular cycles and unique metabolic shifts.</p>
+                <h3>Symptoms & Impact</h3>
+                <p>From hormonal skin changes to emotional ebbs and flows, PCOS symptoms vary for every woman. Understanding them is the first step toward self-kindness.</p>
+                <div class="myth-box">
+                    <b>Myth:</b> You can't get pregnant with PCOS.<br>
+                    <b>Fact:</b> With proper management, many women conceive beautifully.
                 </div>
             </div>
-            <div class="card">
-                <h3>Stress Level</h3>
-                <input type="range" min="1" max="10" style="width:100%">
-                <p>Tip: Hormones might be high today. Try deep breathing.</p>
-            </div>
-            <div class="card">
-                <h3>Guided Calm</h3>
-                <div id="breathingCircle" style="width:60px; height:60px; background:var(--warm-yellow); border-radius:50%; margin:auto;"></div>
-                <button class="btn" onclick="startBreath()">Start Breathing Exercise</button>
+            <div class="card" style="background: var(--peach);">
+                <h3>Hormonal Balance</h3>
+                <p>Learn how insulin and androgens play a role in your daily energy and mood. You are not your symptoms; you are a resilient individual.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="diet" class="page">
-        <h2>Nourishment & Movement</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>PCOS-Friendly Foods</h3>
-                <ul style="font-size: 0.9rem;">
-                    <li>✅ Leafy Greens (Spinach, Kale)</li>
-                    <li>✅ Anti-inflammatory (Turmeric, Berries)</li>
-                    <li>❌ High Sugar & Refined Carbs</li>
+    <section id="profile" class="page">
+        <div class="card" style="max-width: 600px; margin: auto;">
+            <h2>Your Identity</h2>
+            <div class="input-group">
+                <input type="text" id="userName" placeholder="Your Beautiful Name">
+            </div>
+            <div class="input-group">
+                <label>Date of Birth:</label>
+                <input type="date" id="userDob" onchange="calculateAge()">
+            </div>
+            <div class="input-group">
+                <input type="number" id="userHeight" placeholder="Height (cm)">
+            </div>
+            <div class="input-group">
+                <input type="number" id="userWeight" placeholder="Weight (kg)">
+            </div>
+            <button onclick="processProfile()">Save & Calculate BMI</button>
+            <div id="profileOutput" style="margin-top: 20px; text-align: center;"></div>
+        </div>
+    </section>
+
+    <section id="tracker" class="page">
+        <div class="card calendar-box">
+            <h2>Cycle Harmony</h2>
+            <p>Select the first day of your last period:</p>
+            <input type="date" id="lastPeriodDate" style="max-width: 300px; margin-bottom: 20px;">
+            <button onclick="trackPeriod()" style="max-width: 300px;">Predict My Flow</button>
+            
+            <div id="trackerDisplay" style="display: none; margin-top: 30px;">
+                <div class="countdown-circle" id="daysLeft">--</div>
+                <p id="predictionText"></p>
+                <p><i>Note: Based on a standard 28-day cycle. Your body is unique, and variations are normal.</i></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="analyze" class="page">
+        <h2>Symptom Reflection</h2>
+        <p>Select what you've been feeling lately (Select all that apply):</p>
+        <div class="symptom-grid" id="symptomContainer">
+            <div class="symptom-item" onclick="toggleSymp(this)">Irregular Periods</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Acne</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Hair Fall</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Facial Hair</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Weight Gain</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Fatigue</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Mood Swings</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Anxiety</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Sleep Issues</div>
+            <div class="symptom-item" onclick="toggleSymp(this)">Bloating</div>
+        </div>
+        <button onclick="analyzeRisk()" style="margin-top: 30px;">Evaluate Risk Level</button>
+        <div id="riskOutput" class="card" style="margin-top: 20px; display: none; text-align: center;"></div>
+    </section>
+
+    <section id="wellness" class="page">
+        <h2>Nourish & Move</h2>
+        <div class="wellness-grid">
+            <div class="w-card">
+                <h3>Balanced Nutrition</h3>
+                <ul>
+                    <li>High-fiber greens (Spinach, Kale)</li>
+                    <li>Anti-inflammatory proteins (Salmon, Beans)</li>
+                    <li>Seeds for cycle syncing (Flax, Pumpkin)</li>
                 </ul>
             </div>
-            <div class="card">
-                <h3>Movement Cards</h3>
-                <p><b>Low-Impact Yoga:</b> Perfect for Bloating.</p>
-                <div style="height:100px; background:#eee; border-radius:15px; display:flex; align-items:center; justify-content:center;">Yoga Video Placeholder</div>
+            <div class="w-card">
+                <h3>Yoga for Calm</h3>
+                <p><b>Child’s Pose (Balasana):</b> To release tension in the lower back and calm the mind.</p>
+                <p><b>Butterfly Pose:</b> To stimulate pelvic circulation and hormonal health.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div id="ai" class="page">
-        <h2>Medora AI Consultant</h2>
-        <div id="chatWindow" style="height: 300px; overflow-y: auto; background: white; padding: 20px; border-radius: 20px; border: 1px solid var(--warm-yellow);">
-            <p><b>Medora AI:</b> I'm here to answer your 35 PCOS questions. Ask me anything!</p>
+    <section id="reminders" class="page">
+        <div class="card">
+            <h2>Daily Rituals</h2>
+            <div class="input-group">
+                <label>💧 Water Reminder:</label>
+                <input type="time" value="09:00">
+            </div>
+            <div class="input-group">
+                <label>🧘 Mental Health Check-in:</label>
+                <input type="time" value="18:00">
+            </div>
+            <button onclick="alert('Rituals Saved! We will remind you.')">Set All Reminders</button>
         </div>
-        <div style="display:flex; gap:10px; margin-top:15px;">
-            <input type="text" id="aiInput" placeholder="Is PCOS hereditary?">
-            <button class="btn" onclick="askAI()" style="width:100px; margin:0;">Ask</button>
+    </section>
+
+    <section id="ai" class="page">
+        <div class="card">
+            <h2>Medora AI Consultant</h2>
+            <p>I'm here for your questions and your heart.</p>
+            <div id="chat-area">
+                <div class="msg bot">Hello! I'm your Medora companion. Ask me anything about PCOS.</div>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="chatInput" placeholder="How does PCOS affect my sleep?">
+                <button onclick="sendChat()" style="width: 120px;">Ask</button>
+            </div>
         </div>
-    </div>
-</main>
+    </section>
+
+</div>
 
 <script>
-    function show(id) {
+    // --- Navigation Logic ---
+    function showPage(pageId) {
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        // Handle nav styling
         event.currentTarget.classList.add('active');
     }
 
-    let water = 3;
-    function addWater() {
-        if(water < 8) water++;
-        document.getElementById('waterCount').innerText = "💧 ".repeat(water) + "⚪ ".repeat(8-water);
+    // --- Profile & BMI ---
+    function calculateAge() {
+        const dob = new Date(document.getElementById('userDob').value);
+        const diff = Date.now() - dob.getTime();
+        const age = new Date(diff).getUTCFullYear() - 1970;
+        return age > 0 ? age : 0;
     }
 
-    function toggleS(btn) { btn.classList.toggle('selected'); }
+    function processProfile() {
+        const name = document.getElementById('userName').value;
+        const height = document.getElementById('userHeight').value / 100;
+        const weight = document.getElementById('userWeight').value;
+        const age = calculateAge();
+        
+        if(!name || !height || !weight) return alert("Please fill in all details, love.");
 
-    function startBreath() {
-        const circle = document.getElementById('breathingCircle');
-        circle.animate([
-            { transform: 'scale(1)', background: '#FFD93D' },
-            { transform: 'scale(2)', background: '#FF8400' },
-            { transform: 'scale(1)', background: '#FFD93D' }
-        ], { duration: 4000, iterations: Infinity });
-        alert("Inhale for 4s... Exhale for 4s...");
+        const bmi = (weight / (height * height)).toFixed(1);
+        let msg = "";
+        if(bmi < 18.5) msg = "You're a bit light; ensure you're nourishing your body well.";
+        else if(bmi < 25) msg = "You are in a healthy range! Keep up that beautiful balance.";
+        else msg = "You're a bit higher than average; small lifestyle changes can work wonders for your hormones.";
+
+        document.getElementById('profileOutput').innerHTML = `
+            <h3>Hello, ${name}!</h3>
+            <p>Age: ${age} | BMI: ${bmi}</p>
+            <p><i>${msg}</i></p>
+        `;
     }
 
-    const pcosFAQ = {
-        "exactly": "PCOS is a hormonal condition where ovaries produce excess androgens.",
+    // --- Period Tracker Logic ---
+    function trackPeriod() {
+        const inputDate = document.getElementById('lastPeriodDate').value;
+        if(!inputDate) return alert("Please select your last start date.");
+
+        const lastDate = new Date(inputDate);
+        const nextDate = new Date(lastDate);
+        nextDate.setDate(lastDate.getDate() + 28); // EXACT 28 DAYS
+
+        const diffTime = nextDate - Date.now();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        document.getElementById('trackerDisplay').style.display = "block";
+        document.getElementById('daysLeft').innerText = diffDays > 0 ? diffDays : 0;
+        document.getElementById('predictionResult').innerText = "Next Period: " + nextDate.toDateString();
+        
+        const predText = diffDays > 0 ? "You have time to prepare! Focus on hydration this week." : "Your cycle may be visiting soon. Be extra gentle with yourself.";
+        document.getElementById('predictionText').innerText = predText;
+    }
+
+    // --- Risk Analysis ---
+    function toggleSymp(el) {
+        el.classList.toggle('selected');
+    }
+
+    function analyzeRisk() {
+        const count = document.querySelectorAll('.symptom-item.selected').length;
+        let risk = "Low";
+        let color = "#4CAF50";
+        if(count >= 7) { risk = "High"; color = "#FF4B4B"; }
+        else if(count >= 4) { risk = "Medium"; color = "#FFA726"; }
+
+        const out = document.getElementById('riskOutput');
+        out.style.display = "block";
+        out.innerHTML = `
+            <h2 style="color: ${color}">${risk} Risk Level</h2>
+            <p>Your symptoms suggest a ${risk.toLowerCase()} probability of PCOS factors.</p>
+            <p><small>Note: This is an educational tool, not a medical diagnosis. Please consult a healthcare professional for a formal checkup.</small></p>
+        `;
+    }
+
+    // --- AI Chatbot ---
+    const pcosData = {
+        "what exactly is pcos": "PCOS (Polycystic Ovary Syndrome) is a hormonal condition where ovaries produce excess androgens (male hormones), affecting periods, skin, weight, and fertility.",
+        "disease or a disorder": "It is a hormonal disorder, not an infection or cancer.",
+        "irregular periods": "Hormonal imbalance prevents regular ovulation, which delays or skips periods.",
+        "cure": "No permanent cure exists, but PCOS can be effectively managed with lifestyle changes and treatment.",
+        "fertility": "PCOS can make ovulation irregular, but many women with PCOS conceive naturally or with treatment.",
+        "weight": "PCOS often causes insulin resistance, making weight gain easier and weight loss harder.",
         "hereditary": "Yes, genetics play a role. It often runs in families.",
-        "cure": "No permanent cure exists, but it can be managed with lifestyle changes.",
-        "fertility": "Many women with PCOS conceive naturally or with treatment.",
-        "weight": "PCOS causes insulin resistance, making weight loss harder.",
-        "acne": "High androgen levels increase oil production, leading to acne."
+        "acne": "High androgen levels increase oil production, leading to acne.",
+        "facial hair": "Excess male hormones stimulate unwanted hair growth (hirsutism).",
+        "hair fall": "Yes. Hormonal imbalance can cause scalp hair thinning.",
+        "stress": "Yes. Stress increases cortisol, which disrupts hormonal balance further.",
+        "lifestyle": "Yes. Diet, exercise, sleep, and stress management are first-line treatments.",
+        "exercise": "Walking, yoga, strength training, and low-impact cardio work best.",
+        "carbohydrates": "No. Choose complex carbs and avoid refined sugar.",
+        "birth control": "They regulate periods and reduce androgen-related symptoms.",
+        "hormonal pills": "When prescribed correctly and monitored, they are generally safe.",
+        "anxiety": "Yes. Hormonal imbalance affects mental health.",
+        "diabetes": "Yes. Insulin resistance increases the risk of type 2 diabetes.",
+        "age": "Yes. Symptoms may improve or change over time, especially with management.",
+        "track": "Yes. Tracking periods, mood, weight, and symptoms is highly helpful.",
+        "regularly": "It helps identify cycle patterns and treatment effectiveness.",
+        "missing periods": "Long gaps can increase the risk of endometrial issues. Medical guidance is important.",
+        "sleep": "Yes. Hormonal imbalance may cause poor sleep or fatigue.",
+        "bloating": "Yes. Hormonal changes can lead to water retention and bloating.",
+        "doctor": "Both are helpful. PCOS affects reproductive and hormonal systems.",
+        "naturally": "Lifestyle changes can manage symptoms, but medical advice is still important.",
+        "common": "Yes. Around 1 in 10 women of reproductive age have PCOS.",
+        "apps": "Yes. Apps improve awareness, consistency, and early detection of issues.",
+        "data safe": "Trusted apps use secure storage and privacy policies.",
+        "pregnancy": "With proper care, most women with PCOS have healthy pregnancies.",
+        "tired": "Insulin resistance and hormonal imbalance cause fatigue.",
+        "fault": "Absolutely not. PCOS is a medical condition, not a personal failure.",
+        "marriage": "No. Symptoms may change, but PCOS doesn’t disappear.",
+        "checkups": "At least once a year, or as advised by your doctor.",
+        "life-threatening": "No, but untreated PCOS can lead to long-term health risks, so management is important."
     };
 
-    function askAI() {
-        const input = document.getElementById('aiInput').value.toLowerCase();
-        let reply = "Medora is here to support you. For that specific query, please check our 'Learn' section or consult your doctor.";
+    function sendChat() {
+        const input = document.getElementById('chatInput').value.toLowerCase();
+        if(!input) return;
         
-        for (let key in pcosFAQ) {
-            if (input.includes(key)) reply = pcosFAQ[key];
+        const chatArea = document.getElementById('chat-area');
+        chatArea.innerHTML += `<div class="msg user">${input}</div>`;
+
+        let found = false;
+        for (let key in pcosData) {
+            if(input.includes(key)) {
+                chatArea.innerHTML += `<div class="msg bot">${pcosData[key]}</div>`;
+                found = true;
+                break;
+            }
         }
 
-        const chat = document.getElementById('chatWindow');
-        chat.innerHTML += `<p><b>You:</b> ${input}</p><p><b>AI:</b> ${reply}</p>`;
-        document.getElementById('aiInput').value = "";
-    }
+        if(!found) {
+            chatArea.innerHTML += `<div class="msg bot">I want to make sure I give you the best information. Could you try asking about "fertility", "cure", or "stress"? I'm here to support you.</div>`;
+        }
 
-    function triggerCrisis() {
-        alert("🚨 You are safe. Close your eyes. Count to 10. Help is available: [National Helpline Number]");
+        document.getElementById('chatInput').value = "";
+        chatArea.scrollTop = chatArea.scrollHeight;
     }
 </script>
+
 </body>
 </html>
