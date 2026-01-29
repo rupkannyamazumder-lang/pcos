@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medora | Your PCOS Sanctuary</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --light-violet: #F3E8FF;
-            --deep-lavender: #9333EA;
-            --blood-red: #8B0000;
-            --soft-white: #FCF9FF;
-            --ocean-dark: #1E1B4B;
+            --light-violet: #f3e8ff;
+            --deep-lavender: #9333ea;
+            --blood-red: #8b0000;
+            --ocean-green: #2e8b57;
+            --soft-white: #fcf9ff;
+            --shadow: 0 10px 30px rgba(147, 51, 234, 0.1);
         }
 
         * { box-sizing: border-box; transition: all 0.4s ease; }
 
         body {
             margin: 0; font-family: 'Poppins', sans-serif;
-            background-color: var(--soft-white);
-            color: var(--ocean-dark);
+            background-color: var(--soft-white); color: #1e1b4b;
             overflow-x: hidden;
         }
 
-        /* --- Navigation --- */
+        /* --- Stylish Navigation --- */
         nav {
             background: white; padding: 1.2rem 5%;
             display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.1);
+            box-shadow: var(--shadow);
         }
 
-        .logo { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--deep-lavender); font-weight: 700; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--blood-red); font-weight: 700; }
 
         .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
         
         .nav-links a {
-            text-decoration: none; color: var(--ocean-dark); font-weight: 600; font-size: 0.8rem;
+            text-decoration: none; color: #1e1b4b; font-weight: 600; font-size: 0.8rem;
             padding: 8px 15px; border-radius: 20px; cursor: pointer;
         }
 
@@ -47,31 +47,35 @@
         .page.active { display: block; }
 
         .container { max-width: 1100px; margin: auto; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--blood-red); text-align: center; }
+        h1, h2 { font-family: 'Playfair Display', serif; color: var(--blood-red); text-align: center; }
 
-        /* --- Creative Shapes --- */
-        .shape-circle { width: 500px; height: 500px; border-radius: 50%; border: 12px solid var(--light-violet); margin: auto; display: flex; align-items: center; justify-content: center; padding: 40px; text-align: center; background: white; box-shadow: 0 20px 50px rgba(0,0,0,0.05); }
-        .shape-oval { width: 100%; max-width: 600px; border-radius: 100px; background: var(--light-violet); padding: 40px; margin: 20px auto; border-left: 15px solid var(--blood-red); }
-        .shape-square { border-radius: 0; border: 4px solid var(--deep-lavender); padding: 30px; background: white; position: relative; }
-        .shape-cloud { border-radius: 50px 50px 50px 10px; background: #fff; padding: 30px; border-bottom: 5px solid var(--light-violet); box-shadow: 10px 10px 0 var(--light-violet); }
-        .shape-triangle-top { width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 50px solid var(--light-violet); margin: auto; }
+        /* --- Designer Shapes & Layouts --- */
+        .shape-circle { width: 550px; height: 550px; border-radius: 50%; border: 15px solid var(--light-violet); margin: auto; display: flex; align-items: center; justify-content: center; padding: 50px; text-align: center; background: white; box-shadow: var(--shadow); }
+        .shape-oval { border-radius: 100px; background: white; padding: 40px; border-left: 15px solid var(--blood-red); box-shadow: var(--shadow); }
+        .shape-cloud { border-radius: 50px 50px 50px 10px; background: white; padding: 30px; border-bottom: 8px solid var(--light-violet); box-shadow: 15px 15px 0 var(--light-violet); }
+        .shape-square { border: 4px solid var(--deep-lavender); padding: 30px; background: white; border-radius: 0; }
 
-        /* --- Ovary Design --- */
-        .ovary-art { width: 160px; height: 80px; background: var(--blood-red); border-radius: 40px 40px 10px 10px; margin: 30px auto; position: relative; box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2); }
-        .ovary-art::before, .ovary-art::after { content: ''; position: absolute; width: 30px; height: 30px; background: white; border-radius: 50%; top: 25px; }
-        .ovary-art::before { left: 20px; } .ovary-art::after { right: 20px; }
+        /* --- Ovary & Period Designs --- */
+        .ovary-art { width: 180px; height: 90px; background: var(--blood-red); border-radius: 45px 45px 15px 15px; margin: 30px auto; position: relative; }
+        .ovary-art::before, .ovary-art::after { content: ''; position: absolute; width: 35px; height: 35px; background: var(--light-violet); border-radius: 50%; top: 25px; }
+        .ovary-art::before { left: 25px; } .ovary-art::after { right: 25px; }
 
-        /* --- Inputs & Buttons --- */
-        input { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid var(--light-violet); background: white; margin: 10px 0; font-family: inherit; }
-        button { background: var(--blood-red); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; }
-        button:hover { letter-spacing: 2px; background: var(--deep-lavender); }
+        /* --- Inputs & UI --- */
+        input, textarea, select { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid var(--light-violet); background: white; margin: 10px 0; font-family: inherit; }
+        .btn { background: var(--blood-red); color: white; border: none; padding: 15px 30px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 15px; }
+        .btn:hover { background: var(--deep-lavender); transform: translateY(-3px); }
 
-        /* --- AI Chat --- */
-        #chat-box { height: 400px; overflow-y: auto; background: var(--light-violet); border-radius: 30px; padding: 25px; border: 3px solid white; display: flex; flex-direction: column; gap: 10px; }
-        .bot { background: white; padding: 12px; border-radius: 20px; width: fit-content; max-width: 85%; }
-        .user { background: var(--blood-red); color: white; padding: 12px; border-radius: 20px; align-self: flex-end; width: fit-content; max-width: 85%; }
-
+        /* --- Safety Net (Breathing) --- */
+        #safety-net { display: none; position: fixed; inset: 0; background: var(--soft-white); z-index: 2000; text-align: center; padding: 100px 20px; }
+        .breath-circle { width: 100px; height: 100px; background: var(--deep-lavender); border-radius: 50%; margin: 50px auto; animation: breathe 4s infinite ease-in-out; }
+        
+        @keyframes breathe { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(2.5); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Chat UI --- */
+        #chat-window { height: 350px; overflow-y: auto; background: var(--light-violet); border-radius: 30px; padding: 25px; display: flex; flex-direction: column; gap: 10px; }
+        .bot { background: white; padding: 12px; border-radius: 15px; width: 85%; align-self: flex-start; }
+        .user { background: var(--blood-red); color: white; padding: 12px; border-radius: 15px; width: 85%; align-self: flex-end; }
     </style>
 </head>
 <body>
@@ -79,119 +83,136 @@
 <nav>
     <div class="logo">Medora</div>
     <div class="nav-links">
-        <a onclick="show('p1')" class="active">Awareness</a>
+        <a onclick="show('p1')" class="active">Wisdom</a>
         <a onclick="show('p2')">Identity</a>
         <a onclick="show('p3')">Cycle</a>
-        <a onclick="show('p4')">Rituals</a>
-        <a onclick="show('p5')">Analyze</a>
+        <a onclick="show('p4')">Habits</a>
+        <a onclick="show('p5')">Analysis</a>
         <a onclick="show('p6')">Plans</a>
         <a onclick="show('p7')">Rituals</a>
         <a onclick="show('p8')">Specialist</a>
     </div>
 </nav>
 
+<div id="safety-net">
+    <h1 style="font-family: 'Dancing Script', cursive;">Peace, be still.</h1>
+    <p>Medora noticed you're feeling low. Let's breathe together for a moment.</p>
+    <div class="breath-circle"></div>
+    <button class="btn" onclick="closeSafety()" style="max-width: 200px;">I'm okay now</button>
+</div>
+
 <div class="container">
 
     <section id="p1" class="page active">
         <div class="shape-circle">
-            <div style="overflow-y: auto; max-height: 400px; padding: 10px;">
-                <h2>About PCOS</h2>
-                <p><i><b>PCOS (Polycystic Ovary Syndrome)</b></i> is a hormonal and metabolic disorder that affects women of reproductive age. It occurs when the ovaries produce higher-than-normal levels of <b>androgens</b>.</p>
-                <p>PCOS impacts multiple systems: Reproductive, Hormonal, Metabolic, and significantly, <b>Mental Health</b>. Management focuses on regulating periods, improving insulin sensitivity, and supporting your emotional wellness.</p>
-                <p><i>Note: PCOS is not your fault. It does not define your worth or future.</i></p>
+            <div style="overflow-y: auto; max-height: 450px; padding: 20px;">
+                <h2 style="font-family: 'Dancing Script', cursive; font-size: 2.5rem;">🌸 What is PCOS?</h2>
+                <p><i><b>Polycystic Ovary Syndrome (PCOS)</b></i> is a <b>hormonal and metabolic disorder</b> that affects women of reproductive age. It occurs when the ovaries produce higher-than-normal levels of <b>androgens (male hormones)</b>.</p>
+                <p><i><b>Hormonal Imbalance:</b></i> Ovulation does not happen regularly, making periods irregular or absent. <i><b>Insulin Resistance:</b></i> The body doesn't use insulin effectively, leading to weight shifts and fatigue.</p>
+                <p><i><b>Reassurance:</b></i> PCOS is not your fault. It doesn't define your worth. With the right care, you are capable of a radiant life.</p>
             </div>
         </div>
     </section>
 
     <section id="p2" class="page">
         <div class="shape-oval">
-            <h2>The Identity Form</h2>
-            <input type="text" id="pName" placeholder="Your Name">
-            <input type="number" id="pHeight" placeholder="Height (cm)">
-            <input type="number" id="pWeight" placeholder="Weight (kg)">
-            <input type="number" id="pAge" placeholder="Age">
-            <button onclick="calculateProfile()">Update Identity</button>
-            <div id="idOut" style="text-align: center; margin-top: 20px; font-weight: bold;"></div>
+            <h2>The Identity Flow</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                <input type="text" id="pName" placeholder="Name">
+                <input type="number" id="pAge" placeholder="Age">
+                <input type="number" id="pHeight" placeholder="Height (cm)">
+                <input type="number" id="pWeight" placeholder="Weight (kg)">
+            </div>
+            <h3>Body-Neutral Scoring</h3>
+            <select id="energyLevel"><option>Energy: High</option><option>Energy: Moderate</option><option>Energy: Low</option></select>
+            <select id="moodStatus" onchange="checkMentalHealth(this.value)">
+                <option value="Stable">Mood: Stable</option>
+                <option value="Happy">Mood: Happy</option>
+                <option value="Very Low">Mood: Very Low</option>
+            </select>
+            <button class="btn" onclick="calculateProfile()">Update Identity</button>
+            <div id="idOut" style="text-align: center; margin-top: 20px; font-weight: bold; color: var(--blood-red);"></div>
         </div>
     </section>
 
     <section id="p3" class="page">
-        <div class="shape-cloud" style="max-width: 600px; margin: auto;">
+        <div class="shape-cloud">
             <h2>Cycle Harmony</h2>
             <div class="ovary-art"></div>
-            <p style="text-align: center;">Formula: <i>Next Date = Last Date + 28 Days</i></p>
-            <input type="date" id="lastPeriodInput">
-            <button onclick="predictNextFlow()">Predict Next Period</button>
-            <div id="cycleOut" style="text-align:center; font-size: 1.4rem; font-weight: bold; margin-top: 20px; color: var(--blood-red);"></div>
+            <p style="text-align: center; font-style: italic;">Next Date = Last Start Date + 28 Days</p>
+            <div style="text-align: center;">
+                <label>Last Period Started On:</label>
+                <input type="date" id="lastPeriodInput" style="max-width: 400px; display: block; margin: 10px auto;">
+                <button class="btn" onclick="predictCycle()" style="max-width: 400px;">Predict Next Flow</button>
+            </div>
+            <div id="cycleOut" style="text-align: center; margin-top: 30px; font-size: 1.5rem; font-weight: bold; color: var(--blood-red);"></div>
         </div>
     </section>
 
     <section id="p4" class="page">
-        <div class="grid" style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
-            <div class="shape-square" style="width: 300px;">
-                <h3>Hydration</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="shape-square">
+                <h3>Hydration 💧</h3>
                 <input type="number" id="water" placeholder="Glasses of Water">
+                <h3>Movement 🚶</h3>
+                <input type="number" id="walk" placeholder="Walk Hours">
             </div>
-            <div class="shape-square" style="width: 300px;">
-                <h3>Activity</h3>
-                <input type="number" id="walk" placeholder="Hours of Walking">
+            <div class="shape-square">
+                <h3>Journaling Box ✍️</h3>
+                <textarea id="journal" rows="6" placeholder="Thought dump: How are you really feeling today?"></textarea>
+                <button class="btn" onclick="alert('Thoughts saved safely.')">Save Entry</button>
             </div>
         </div>
-        <button style="max-width: 400px; margin: 30px auto; display: block;" onclick="alert('Progress Logged!')">Save Daily Progress</button>
     </section>
 
     <section id="p5" class="page">
-        <h2>Symptom Detection</h2>
-        <div class="grid" style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Acne</div>
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Hairfall</div>
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Weight Gain</div>
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Hairloss</div>
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Absent Periods</div>
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Heavy Bleeding</div>
-            <div class="symptom-tag" onclick="this.classList.toggle('selected')">Skin Changes</div>
+        <div class="shape-oval" style="background: white; border: none; box-shadow: var(--shadow);">
+            <h2>Symptom Reflection</h2>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <div class="tag" onclick="this.classList.toggle('active')">Acne</div>
+                <div class="tag" onclick="this.classList.toggle('active')">Hairfall</div>
+                <div class="tag" onclick="this.classList.toggle('active')">Weight Gain</div>
+                <div class="tag" onclick="this.classList.toggle('active')">Hairloss</div>
+                <div class="tag" onclick="this.classList.toggle('active')">Absent Periods</div>
+                <div class="tag" onclick="this.classList.toggle('active')">Heavy Bleeding</div>
+                <div class="tag" onclick="this.classList.toggle('active')">Skin Changes</div>
+            </div>
+            <button class="btn" onclick="runAnalysis()">Run Detection</button>
+            <h2 id="riskOut" style="margin-top:20px;"></h2>
         </div>
-        <button onclick="runAnalysis()">Run Detection</button>
-        <h2 id="riskResult" style="margin-top:20px;"></h2>
-        <style>
-            .symptom-tag { padding: 15px; background: white; border: 2px solid var(--light-violet); border-radius: 20px; cursor: pointer; }
-            .symptom-tag.selected { background: var(--blood-red); color: white; }
-        </style>
     </section>
 
     <section id="p6" class="page">
-        <h2>Your Care Plan</h2>
-        <div id="planBox" class="shape-oval" style="background: white; border: 2px solid var(--blood-red); border-radius: 20px;">
-            <p>Please perform the analysis first.</p>
+        <div id="planBox" class="shape-cloud">
+            <h2>Your Wellness Ritual</h2>
+            <p>Please perform Analysis first.</p>
         </div>
     </section>
 
     <section id="p7" class="page">
         <div class="shape-square" style="max-width: 500px; margin: auto;">
             <h2>Daily Alarms</h2>
-            <div style="margin: 10px 0;">🔔 Water: <input type="time"></div>
-            <div style="margin: 10px 0;">🧘 Exercise: <input type="time"></div>
-            <div style="margin: 10px 0;">💊 Medicine: <input type="time"></div>
-            <button onclick="alert('🚨 BEEP! BEEP! Time for your self-care ritual!')">Test Sound Alarm</button>
+            <label>🔔 Water Alarm:</label><input type="time">
+            <label>🧘 Exercise Alarm:</label><input type="time">
+            <label>💊 Medicine Alarm:</label><input type="time">
+            <button class="btn" onclick="alert('🚨 BEEP! Medora Ritual Time!')">Set Ritual Alarms</button>
         </div>
     </section>
 
     <section id="p8" class="page">
         <h2>Medora AI Consultant</h2>
-        <div id="chat-box">
-            <div class="bot">Hello! I am your Medora Specialist. I'm here to answer any of your 35 PCOS questions. How can I help?</div>
+        <div id="chat-window">
+            <div class="bot">Hello! I'm your Medora specialist. Ask me any of your 35 PCOS questions.</div>
         </div>
         <div style="display: flex; gap: 10px; margin-top: 15px;">
-            <input type="text" id="userInput" placeholder="Ask about cures, fertility, periods...">
-            <button onclick="askAI()" style="width: 120px;">Inquire</button>
+            <input type="text" id="chatInput" placeholder="Ask about cures, fertility, insulin...">
+            <button class="btn" style="width: 120px; margin-top: 10px;" onclick="askAI()">Inquire</button>
         </div>
-        <div class="shape-cloud" style="margin-top: 30px; background: var(--blood-red); color: white;">
-            <p><b>Medora is always there to support you.</b> We understand the physical and emotional journey you are on. You are never alone; we are here for your health, your heart, and your healing. Stay strong, radiant, and hopeful. 🌸</p>
+        <div class="shape-cloud" style="margin-top: 40px; background: var(--blood-red); color: white;">
+            <p><b>Medora is always here to support you.</b> We believe your health journey is a story of resilience. You are never alone; we are here for your health, your heart, and your healing. 🌸</p>
         </div>
     </section>
 </div>
-
-
 
 <script>
     function show(id) {
@@ -206,54 +227,60 @@
         const h = document.getElementById('pHeight').value / 100;
         const w = document.getElementById('pWeight').value;
         const bmi = (w / (h*h)).toFixed(1);
-        document.getElementById('idOut').innerText = `Identity Synced. BMI: ${bmi}`;
+        document.getElementById('idOut').innerText = `Identity Updated. BMI: ${bmi} | Status: Synced.`;
     }
 
-    function predictNextFlow() {
+    function predictCycle() {
         const input = document.getElementById('lastPeriodInput').value;
-        if (!input) { alert("Please select a date, dear."); return; }
-        
+        if (!input) return alert("Select a date first, love.");
         let lastDate = new Date(input);
-        // FORMULA: LAST DATE + 28 DAYS
         lastDate.setDate(lastDate.getDate() + 28);
-        
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
         document.getElementById('cycleOut').innerText = "Next Flow: " + lastDate.toLocaleDateString(undefined, options);
     }
 
+    function checkMentalHealth(val) {
+        if(val === "Very Low") {
+            document.getElementById('safety-net').style.display = 'block';
+        }
+    }
+    function closeSafety() { document.getElementById('safety-net').style.display = 'none'; }
+
     function runAnalysis() {
-        const count = document.querySelectorAll('.symptom-tag.selected').length;
-        let risk = count >= 5 ? "Possible PCOS Detected" : "Low PCOS Probability";
-        document.getElementById('riskResult').innerText = "Status: " + risk;
-        
-        const plan = document.getElementById('planBox');
+        const count = document.querySelectorAll('.tag.active').length;
+        let risk = count >= 5 ? "Possible PCOS Risk" : "Low PCOS Probability";
+        document.getElementById('riskOut').innerText = risk;
+        const box = document.getElementById('planBox');
         if (count >= 5) {
-            plan.innerHTML = "<h3>High Risk Protocol</h3><p><b>Diet:</b> Anti-inflammatory, Low Sugar.<br><b>Exercise:</b> Strength training 4x/week.</p>";
+            box.innerHTML = "<h3>High Risk Ritual</h3><p><b>Diet:</b> Anti-inflammatory. Zero Refined Sugar.<br><b>Exercise:</b> Strength training 4x/week.</p>";
         } else {
-            plan.innerHTML = "<h3>Maintenance Protocol</h3><p><b>Diet:</b> Mediterranean.<br><b>Exercise:</b> Yoga and daily walking.</p>";
+            box.innerHTML = "<h3>Maintenance Ritual</h3><p><b>Diet:</b> Mediterranean.<br><b>Exercise:</b> Yoga and daily walking.</p>";
         }
     }
 
-    const pcosFaq = {
-        "what exactly is pcos": "PCOS (Polycystic Ovary Syndrome) is a hormonal condition where ovaries produce excess androgens (male hormones), affecting periods, skin, weight, and fertility.",
+    const faq = {
+        "what exactly is pcos": "PCOS is a hormonal condition where ovaries produce excess androgens.",
         "disease": "It is a hormonal disorder, not an infection or cancer.",
-        "irregular": "Hormonal imbalance prevents regular ovulation, which delays or skips periods.",
         "cure": "No permanent cure exists, but it can be managed with lifestyle changes.",
         "fertility": "Many women with PCOS conceive naturally or with treatment.",
-        "weight": "PCOS causes insulin resistance, making weight gain easier.",
-        "hereditary": "Yes, genetics play a role. It often runs in families.",
-        "acne": "High androgen levels increase oil production, leading to acne."
+        "insulin": "Insulin resistance causes weight gain and fatigue.",
+        "acne": "High androgen levels increase oil production, causing acne."
     };
 
     function askAI() {
-        const q = document.getElementById('userInput').value.toLowerCase();
-        let a = "I'm learning more every day! For now, please refer to our Awareness page or consult a doctor.";
-        for(let key in pcosFaq) { if(q.includes(key)) a = pcosFaq[key]; }
-        const box = document.getElementById('chat-box');
-        box.innerHTML += `<div class="user">${q}</div><div class="bot">${a}</div>`;
-        document.getElementById('userInput').value = "";
-        box.scrollTop = box.scrollHeight;
+        const q = document.getElementById('chatInput').value.toLowerCase();
+        let a = "I'm here for you. Ask about 'cure', 'fertility', or 'insulin' for specific answers.";
+        for(let key in faq) { if(q.includes(key)) a = faq[key]; }
+        const win = document.getElementById('chat-window');
+        win.innerHTML += `<div class="user">${q}</div><div class="bot">${a}</div>`;
+        document.getElementById('chatInput').value = "";
     }
 </script>
+
+<style>
+    .tag { padding: 10px 20px; border: 2px solid var(--light-violet); border-radius: 20px; cursor: pointer; background: white; }
+    .tag.active { background: var(--blood-red); color: white; border-color: var(--blood-red); }
+</style>
+
 </body>
 </html>
